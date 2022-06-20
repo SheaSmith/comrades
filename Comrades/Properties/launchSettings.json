@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Comrades (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Comrades (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

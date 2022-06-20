@@ -1,0 +1,45 @@
+﻿<Page
+    x:Class="Comrades.Views.ChannelPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Comrades.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <NavigationView x:Name="nvSample" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False">
+            <NavigationView.MenuItems>
+                <NavigationViewItem  Content="Posts" Tag="SamplePage1" />
+                <NavigationViewItem  Content="Files" Tag="SamplePage2" />
+            </NavigationView.MenuItems>
+            <NavigationView.PaneHeader>
+                <StackPanel Orientation="Horizontal">
+                    <PersonPicture Margin="8,0,0,0" Height="30" DisplayName="Comrades Test Team" VerticalAlignment="Center" />
+                    <TextBlock Margin="8,0,8,0" Text="General" VerticalAlignment="Center" Style="{ThemeResource NavigationViewItemHeaderTextStyle}" />
+                </StackPanel>
+            </NavigationView.PaneHeader>
+            <NavigationView.PaneCustomContent>
+                <!--<AppBarButton VerticalAlignment="Center" Icon="Add" />-->
+            </NavigationView.PaneCustomContent>
+            <NavigationView.PaneFooter>
+                <StackPanel Orientation="Horizontal">
+                    <!--<Button Margin="4,0,4,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xe714;" FontFamily="Segoe Fluent Icons" VerticalAlignment="Center"/>
+                            <TextBlock Text="Meet" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </Button>-->
+                    <AppBarButton Icon="ContactInfo" />
+                    <AppBarButton Icon="More" />
+                </StackPanel>
+            </NavigationView.PaneFooter>
+            <Frame x:Name="contentFrame"/>
+        </NavigationView>
+    </Grid>
+</Page>

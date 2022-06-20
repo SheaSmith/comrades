@@ -1,0 +1,69 @@
+﻿<Window
+    x:Class="Comrades.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Comrades"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Border x:Name="AppTitleBar"
+                Grid.Column="1"
+                IsHitTestVisible="True"
+                VerticalAlignment="Top"
+                Height="{Binding ElementName=NavigationViewControl, Path=CompactPaneLength}"
+                Canvas.ZIndex="1">
+            <TextBlock x:Name="AppTitle"
+                       Text="Comrades - A Native Client for Teams"
+                       VerticalAlignment="Top"
+                       Margin="0,15,0,0"
+                       Style="{StaticResource CaptionTextBlockStyle}" />
+        </Border>
+
+        <NavigationView
+            Canvas.ZIndex="0"
+            x:Name="NavigationViewControl"
+            Grid.Column="1"
+            AlwaysShowHeader="False"
+            PaneDisplayMode="LeftCompact"
+            IsTabStop="False"
+            IsTitleBarAutoPaddingEnabled="False"
+            PaneOpening="NavigationViewControl_PaneOpening"
+            PaneClosing="NavigationViewControl_PaneClosing"
+            DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
+            Loaded="NavigationView_Loaded"
+            SelectionChanged="NavigationView_SelectionChanged">
+            
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="Message" Content="Chat" Tag="Comrades.Views.ChatPage" />
+                <NavigationViewItem Icon="People" Content="Teams" Tag="Comrades.Views.TeamsPage" />
+                <!--<NavigationViewItem Icon="Calendar" Content="Calendar" Tag="Calendar" />-->
+                <!--<NavigationViewItem Icon="Phone" Content="Calls" Tag="Calls" />-->
+                <NavigationViewItem Icon="Document" Content="Files" Tag="Comrades.Views.FilesPage" />
+            </NavigationView.MenuItems>
+            
+            <NavigationView.AutoSuggestBox>
+                <AutoSuggestBox
+                    x:Name="controlsSearchBox"
+                    VerticalAlignment="Center"
+                    x:FieldModifier="public"
+                    PlaceholderText="Search"
+                    QueryIcon="Find"
+                    MinWidth="200"
+                    KeyboardAcceleratorPlacementMode="Hidden">
+                </AutoSuggestBox>
+            </NavigationView.AutoSuggestBox>
+
+            <Frame x:Name="rootFrame" Margin="0 0 0 0" />
+        </NavigationView>
+    </Grid>
+</Window>
