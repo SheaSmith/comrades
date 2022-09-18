@@ -20,7 +20,7 @@ namespace Comrades.Services
         // Below are the clientId (Application Id) of your app registration and the tenant information.
         // You have to replace:
         // - the content of ClientID with the Application Id for your app registration
-        private const string ClientId = "redacted";
+        private const string ClientId = "2bb51a06-1464-4375-adca-8089f689f4f5";
 
         private const string Tenant = "common"; // Alternatively "[Enter your tenant, as obtained from the Azure portal, e.g. kko365.onmicrosoft.com]"
         private const string Authority = "https://login.microsoftonline.com/" + Tenant;

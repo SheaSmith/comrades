@@ -24,15 +24,24 @@ namespace Comrades.Views
     /// </summary>
     public sealed partial class ChannelPage : Page
     {
+        private ChannelNavigateArgs Parameters { get; set; }
+
         public ChannelPage()
         {
             this.InitializeComponent();
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var parameters = e.Parameter as ChannelNavigateArgs;
+            Parameters = e.Parameter as ChannelNavigateArgs;
         }
 
+        private void nvSample_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            if (args != null && args.SelectedItemContainer.Tag.ToString() == "messages")
+            {
+                contentFrame.Navigate(typeof(ChannelMessages), Parameters);
+            }
+        }
     }
 
     public class ChannelNavigateArgs

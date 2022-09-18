@@ -7,8 +7,7 @@
     xmlns:page="using:Comrades.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}">
+    mc:Ignorable="d">
 
     <Page.DataContext>
         <local:TeamsViewModel x:Name="ViewModel" />
@@ -51,6 +50,6 @@
             </Grid>
         </SplitView.Pane>
 
-        <Frame BorderBrush="{ThemeResource SystemControlForegroundChromeMediumBrush}" Margin="0,-2,0,0" BorderThickness="1,1,0,0" CornerRadius="8,0,0,0" x:Name="contentFrame"/>
+        <Frame Margin="0,-2,0,0" BorderThickness="1,1,0,0" CornerRadius="8,0,0,0" x:Name="contentFrame"/>
     </SplitView>
 </Page>

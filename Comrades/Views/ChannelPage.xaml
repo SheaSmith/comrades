@@ -6,16 +6,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    >
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <NavigationView x:Name="nvSample" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False">
+        <NavigationView x:Name="nvSample" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" SelectionChanged="nvSample_SelectionChanged">
             <NavigationView.MenuItems>
-                <NavigationViewItem  Content="Posts" Tag="SamplePage1" />
+                <NavigationViewItem  Content="Posts" Tag="messages" />
                 <NavigationViewItem  Content="Files" Tag="SamplePage2" />
             </NavigationView.MenuItems>
             <NavigationView.PaneHeader>

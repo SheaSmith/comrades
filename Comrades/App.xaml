@@ -16,6 +16,7 @@
             <Thickness x:Key="NavigationViewHeaderMargin">56,34,0,0</Thickness>
             <SolidColorBrush x:Key="WindowCaptionBackground">Transparent</SolidColorBrush>
             <SolidColorBrush x:Key="WindowCaptionBackgroundDisabled">Transparent</SolidColorBrush>
+            <StaticResource x:Key="ControlExampleDisplayBrush" ResourceKey="CardBackgroundFillColorDefaultBrush" />
             <Color x:Key="SystemAccentColorDark1">#444791</Color>
             <Color x:Key="SystemAccentColorDark2">#444791</Color>
             <Color x:Key="SystemAccentColorDark3">#444791</Color>
