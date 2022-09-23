@@ -24,6 +24,8 @@ namespace Comrades.MarkupConverter
     {
         public static SolidColorBrush QuoteBrush { get; set; }
 
+        private static Paragraph CurrentParagraph = new Paragraph();
+
         public static async Task FromHtml(string html, RichTextBlock textBlock, double width)
         {
             textBlock.Blocks.Clear();
@@ -139,25 +141,46 @@ namespace Comrades.MarkupConverter
                     span.FontSize = textSizeValue;
                 }
 
+                var fontFamily = element.GetStyle().GetFontFamily();
+
+                if (fontFamily != null && fontFamily != "")
+                {
+                    var firstFont = fontFamily.Split(",")[0].Replace("\"", "").Trim();
+                    span.FontFamily = new FontFamily(firstFont);
+                }
+
                 ParseContent(element, span.Inlines, mainBlock, width, listDepth);
+
 
                 if (highlightColor != null && highlightColor != "")
                 {
-                    //var highlighter = new TextHighlighter();
+                    //var richTextBlock = new RichTextBlock();
+                    //var paragraph = new Paragraph();
+                    //paragraph.Inlines.Add(span);
+                    //richTextBlock.Blocks.Add(paragraph);
 
-                    //var textRange = new TextRange(span.ContentStart.Offset, span.ContentEnd.Offset - span.ContentStart.Offset);
+                    var highlighter = new TextHighlighter();
 
-                    //highlighter.Ranges.Add(textRange);
+                    var textRange = new TextRange(0, 999999999);
 
-                    //var colors = highlightColor.Replace("rgba(", "").Replace(")", "").Split(", ");
-                    //var color = Color.FromArgb(Convert.ToByte(Decimal.ToUInt16((Decimal.Parse(colors[3]) * 255))), Byte.Parse(colors[0]), Byte.Parse(colors[1]), Byte.Parse(colors[2]));
+                    highlighter.Ranges.Add(textRange);
 
-                    //highlighter.Background = new SolidColorBrush(color);
+                    var colors = highlightColor.Replace("rgba(", "").Replace(")", "").Split(", ");
+                    var color = Color.FromArgb(Convert.ToByte(Decimal.ToUInt16((Decimal.Parse(colors[3]) * 255))), Byte.Parse(colors[0]), Byte.Parse(colors[1]), Byte.Parse(colors[2]));
 
-                    //mainBlock.TextHighlighters.Add(highlighter);
+                    highlighter.Background = new SolidColorBrush(color);
+
+                    mainBlock.TextHighlighters.Add(highlighter);
+
+                    //var inlineUi = new InlineUIContainer();
+                    //inlineUi.Child = richTextBlock;
+                    //inlines.Add(inlineUi);
                 }
+                //else
+                //{
+                    inlines.Add(span);
+                //}
 
-                inlines.Add(span);
             }
             else if (element.TagName == "BLOCKQUOTE")
             {
@@ -195,7 +218,7 @@ namespace Comrades.MarkupConverter
                 var linebreak2 = new LineBreak();
                 inlines.Add(linebreak2);
             }
-            else if (element.TagName == "DIV")
+            else if (element.TagName == "DIV" || element.TagName == "P")
             {
                 var linebreak = new LineBreak();
                 inlines.Add(linebreak);

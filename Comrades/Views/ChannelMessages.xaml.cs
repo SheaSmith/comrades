@@ -49,8 +49,8 @@ namespace Comrades.Views
             var quoteBrush = Application.Current.Resources["ControlExampleDisplayBrush"];
             if (test != null)
             {
-                ConvertFromHtml.QuoteBrush = (SolidColorBrush)quoteBrush;
-                ConvertFromHtml.FromHtml(test, (RichTextBlock)sender, sender.Width);
+                ConvertFromHtml2.QuoteBrush = (SolidColorBrush)quoteBrush;
+                ConvertFromHtml2.FromHtml(test, (RichTextBlock)sender, sender.Width);
             }
         }
 
@@ -62,8 +62,8 @@ namespace Comrades.Views
                 var quoteBrush = Application.Current.Resources["ControlExampleDisplayBrush"];
                 if (test != null)
                 {
-                    ConvertFromHtml.QuoteBrush = (SolidColorBrush)quoteBrush;
-                    ConvertFromHtml.FromHtml(test, (RichTextBlock)sender, e.NewSize.Width);
+                    ConvertFromHtml2.QuoteBrush = (SolidColorBrush)quoteBrush;
+                    ConvertFromHtml2.FromHtml(test, (RichTextBlock)sender, e.NewSize.Width);
                 }
             }
         }
@@ -76,8 +76,8 @@ namespace Comrades.Views
                 var quoteBrush = Application.Current.Resources["ControlExampleDisplayBrush"];
                 if (test != null)
                 {
-                    ConvertFromHtml.QuoteBrush = (SolidColorBrush)quoteBrush;
-                    ConvertFromHtml.FromHtml(test, (RichTextBlock)sender, ((FrameworkElement)sender).Width);
+                    ConvertFromHtml2.QuoteBrush = (SolidColorBrush)quoteBrush;
+                    ConvertFromHtml2.FromHtml(test, (RichTextBlock)sender, ((FrameworkElement)sender).Width);
                 }
             }
         }
