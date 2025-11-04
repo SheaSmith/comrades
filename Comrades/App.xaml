@@ -10,13 +10,14 @@
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
-            <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>
-            <Thickness x:Key="NavigationViewContentGridBorderThickness">1,1,0,0</Thickness>
-            <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
-            <Thickness x:Key="NavigationViewHeaderMargin">56,34,0,0</Thickness>
-            <SolidColorBrush x:Key="WindowCaptionBackground">Transparent</SolidColorBrush>
-            <SolidColorBrush x:Key="WindowCaptionBackgroundDisabled">Transparent</SolidColorBrush>
-            <StaticResource x:Key="ControlExampleDisplayBrush" ResourceKey="CardBackgroundFillColorDefaultBrush" />
+            <!-- <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness> -->
+            <!-- <Thickness x:Key="NavigationViewContentGridBorderThickness">1,1,0,0</Thickness> -->
+            <!-- <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius> -->
+            <!-- <Thickness x:Key="NavigationViewHeaderMargin">56,34,0,0</Thickness> -->
+            <!-- <SolidColorBrush x:Key="WindowCaptionBackground">Transparent</SolidColorBrush> -->
+            <!-- <SolidColorBrush x:Key="WindowCaptionBackgroundDisabled">Transparent</SolidColorBrush> -->
+            <!-- <StaticResource x:Key="ControlExampleDisplayBrush" ResourceKey="CardBackgroundFillColorDefaultBrush" /> -->
+            <!-- <StaticResource x:Key="ThreadBackground" ResourceKey="SolidBackgroundFillColorBaseBrush" /> -->
             <Color x:Key="SystemAccentColorDark1">#444791</Color>
             <Color x:Key="SystemAccentColorDark2">#444791</Color>
             <Color x:Key="SystemAccentColorDark3">#444791</Color>

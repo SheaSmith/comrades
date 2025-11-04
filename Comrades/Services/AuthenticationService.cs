@@ -1,5 +1,6 @@
-﻿using Azure.Identity;
-using Microsoft.Graph.Beta;
+﻿using Azure.Core;
+using Azure.Identity;
+using Microsoft.Graph;
 using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,15 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Graph.Beta;
+using File = System.IO.File;
 
 namespace Comrades.Services
 {
     public class AuthenticationService
     {
         //Set the scope for API call to user.read
-        private static string[] scopes = new string[] { "Team.ReadBasic.All", "Group.ReadWrite.All", "TeamSettings.ReadWrite.All", "Files.ReadWrite.All", "ChannelSettings.ReadWrite.All", "Channel.Delete.All", "TeamsTab.ReadWrite.All", "Calendars.ReadWrite", "AppCatalog.ReadWrite.All", "TeamsAppInstallation.ReadWriteForTeam", "ChannelMessage.Send", "ChannelMessage.Read.All", "Chat.ReadWrite" };
+        private static string[] scopes = new string[] { "Team.ReadBasic.All", "Group.ReadWrite.All", "TeamSettings.ReadWrite.All", "Files.ReadWrite.All", "ChannelSettings.ReadWrite.All", "Channel.Delete.All", "TeamsTab.ReadWrite.All", "Calendars.ReadWrite", "AppCatalog.ReadWrite.All", "TeamsAppInstallation.ReadWriteForTeam", "ChannelMessage.Send", "ChannelMessage.Read.All", "Chat.ReadWrite", "User.ReadBasic.All", "Presence.Read.All" };
 
         // Below are the clientId (Application Id) of your app registration and the tenant information.
         // You have to replace:
@@ -28,7 +31,7 @@ namespace Comrades.Services
         // The MSAL Public client app
         private static IPublicClientApplication PublicClientApp;
 
-        private static string AUTH_RECORD = "authrecord.bin";
+        private static string AUTH_RECORD = "authrecord2.bin";
         private static AuthenticationResult authResult;
 
         /// <summary>
@@ -85,11 +88,13 @@ namespace Comrades.Services
                     // MUST be http://localhost or http://localhost:PORT
                     // See https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/System-Browser-on-.Net-Core
                     RedirectUri = new Uri("http://localhost"),
-                    TokenCachePersistenceOptions = new TokenCachePersistenceOptions { Name = "Comrades_Cache" }
+                    TokenCachePersistenceOptions = new TokenCachePersistenceOptions { Name = "Comrades_Cache3" }
                 });
 
+                var requestContext = new TokenRequestContext(scopes, null);
+
                 // Call AuthenticateAsync to fetch a new AuthenticationRecord.
-                authRecord = await credential.AuthenticateAsync();
+                authRecord = await credential.AuthenticateAsync(requestContext);
 
                 // Serialize the AuthenticationRecord to disk so that it can be re-used across executions of this initialization code.
                 using var authRecordStream = new FileStream(Path.Join(Windows.Storage.ApplicationData.Current.LocalFolder.Path, AUTH_RECORD), FileMode.Create, FileAccess.Write);
@@ -109,14 +114,14 @@ namespace Comrades.Services
                     // MUST be http://localhost or http://localhost:PORT
                     // See https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/System-Browser-on-.Net-Core
                     RedirectUri = new Uri("http://localhost"),
-                    TokenCachePersistenceOptions = new TokenCachePersistenceOptions() { Name = "Comrades_Cache", UnsafeAllowUnencryptedStorage = true },
+                    TokenCachePersistenceOptions = new TokenCachePersistenceOptions() { Name = "Comrades_Cache3", UnsafeAllowUnencryptedStorage = true },
                     AuthenticationRecord = authRecord
                 };
 
                 credential = new InteractiveBrowserCredential(options);
             }
 
-            GraphServiceClient graphClient = new GraphServiceClient(credential, scopes);
+            GraphServiceClient graphClient = new GraphServiceClient(credential);
 
             return await Task.FromResult(graphClient);
         }

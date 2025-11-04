@@ -5,16 +5,18 @@
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:winUi="using:Microsoft.WinUI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="using:Comrades.Controls"
+    xmlns:system="using:System"
     mc:Ignorable="d"
     
     >
 
     <Grid>
-        <ListView ItemsSource="{Binding Messages}" 
+        <ListView ItemsSource="{x:Bind ViewModel.Messages}" 
                   DataFetchSize="1" 
                   IncrementalLoadingTrigger="Edge" 
                   IncrementalLoadingThreshold="5"
+                  SelectionMode="None"
                   x:Name="messagesList">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -32,11 +34,8 @@
 
 
             <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel HorizontalAlignment="Stretch" Padding="16">
-                        <RichTextBlock Loading="RichTextBlock_Loading" DataContextChanged="RichTextBlock_DataContextChanged" LayoutUpdated="RichTextBlock_LayoutUpdated" DataContext="{Binding Body.Content}" HorizontalAlignment="Stretch" SizeChanged="RichTextBlock_SizeChanged">
-                        </RichTextBlock>
-                    </StackPanel>
+                <DataTemplate x:DataType="system:Object">
+                    <local:ChannelMessage Message="{x:Bind}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

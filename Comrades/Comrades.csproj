@@ -1,70 +1,89 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
-    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
-    <RootNamespace>Comrades</RootNamespace>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Platforms>x86;x64;arm64</Platforms>
-    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
-    <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
-    <UseWinUI>true</UseWinUI>
-    <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
-  </PropertyGroup>
-  <ItemGroup>
-    <None Remove="Views\ChannelMessages.xaml" />
-    <None Remove="Views\ChannelPage.xaml" />
-    <None Remove="Views\TeamsPage.xaml" />
-  </ItemGroup>
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
+        <TargetPlatformVersion>10.0.22621.756</TargetPlatformVersion>
+        <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+        <RootNamespace>Comrades</RootNamespace>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <Platforms>x86;x64;arm64</Platforms>
+        <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+        <PublishProfile>win-$(Platform).pubxml</PublishProfile>
+        <UseWinUI>true</UseWinUI>
+        <EnableMsixTooling>true</EnableMsixTooling>
+        <WindowsAppSdkIncludeVersionInfo>true</WindowsAppSdkIncludeVersionInfo>
+        <LangVersion>12</LangVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Remove="Controls\ChannelMessage.xaml"/>
+        <None Remove="Controls\ProfilePicture.xaml"/>
+        <None Remove="Views\ChannelMessages.xaml"/>
+        <None Remove="Views\ChannelPage.xaml"/>
+        <None Remove="Views\TeamsPage.xaml"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
-  </ItemGroup>
+    <ItemGroup>
+        <Content Include="Assets\SplashScreen.scale-200.png"/>
+        <Content Include="Assets\LockScreenLogo.scale-200.png"/>
+        <Content Include="Assets\Square150x150Logo.scale-200.png"/>
+        <Content Include="Assets\Square44x44Logo.scale-200.png"/>
+        <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png"/>
+        <Content Include="Assets\StoreLogo.png"/>
+        <Content Include="Assets\Wide310x150Logo.scale-200.png"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AngleSharp" Version="0.17.1" />
-    <PackageReference Include="AngleSharp.Css" Version="0.17.0-alpha-78" />
-    <PackageReference Include="Azure.Identity" Version="1.6.0" />
-    <PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
-    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
-    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Markdown" Version="7.1.2" />
-    <PackageReference Include="Microsoft.Graph.Beta" Version="5.11.0-preview" />
-    <PackageReference Include="Microsoft.Graph.Core" Version="3.0.0-preview.13" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.44.0" />
-    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.864.35">
-      <Aliases>webview2</Aliases>
-    </PackageReference>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.0-preview3" />
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
-    <Manifest Include="$(ApplicationManifest)" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="AdaptiveCards.Rendering.WinUI3" Version="2.2.3-beta"/>
+        <PackageReference Include="AngleSharp" Version="1.3.1-beta.491"/>
+        <PackageReference Include="AngleSharp.Css" Version="1.0.0-beta.157"/>
+        <PackageReference Include="Azure.Identity" Version="1.17.0"/>
+        <PackageReference Include="ColorCode.WinUI" Version="2.0.15"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0"/>
+        <PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2"/>
+        <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2"/>
+        <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Markdown" Version="7.1.2"/>
+        <PackageReference Include="Microsoft.Graph.Beta" Version="5.124.0-preview"/>
+        <PackageReference Include="Microsoft.Identity.Client" Version="4.78.1-preview1"/>
+        <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3590-prerelease">
+            <Aliases>webview2</Aliases>
+        </PackageReference>
+        <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251003001" />
+        <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.6901"/>
+        <Manifest Include="$(ApplicationManifest)"/>
+    </ItemGroup>
 
-  <!-- Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
-       Tools extension to be activated for this project even if the Windows App SDK Nuget
-       package has not yet been restored -->
-  <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnablePreviewMsixTooling)'=='true'">
-    <ProjectCapability Include="Msix" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\ChannelMessages.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\ChannelPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\TeamsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
+    <!-- Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
+         Tools extension to be activated for this project even if the Windows App SDK Nuget
+         package has not yet been restored -->
+    <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnablePreviewMsixTooling)'=='true'">
+        <ProjectCapability Include="Msix"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Views\ChannelMessages.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Views\ChannelPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Views\TeamsPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="AdaptiveCardRenderer\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Controls\ProfilePicture.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Controls\ChannelMessage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
 </Project>

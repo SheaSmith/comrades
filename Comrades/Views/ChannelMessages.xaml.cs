@@ -1,6 +1,6 @@
 ﻿using Comrades.MarkupConverter;
 using Comrades.ViewModel;
-using Microsoft.Graph.Beta.Models;
+using Microsoft.Graph;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -27,59 +27,17 @@ namespace Comrades.Views
     /// </summary>
     public sealed partial class ChannelMessages : Page
     {
+        public ChannelPostsViewModel ViewModel;
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var parameters = e.Parameter as ChannelNavigateArgs;
-            DataContext = new ChannelPostsViewModel(parameters.Team.Id, parameters.Channel.Id);
+            ViewModel = new ChannelPostsViewModel(parameters.Team.Id, parameters.Channel.Id);
         }
 
         public ChannelMessages()
         {
             this.InitializeComponent();
-        }
-
-        private void RichTextBlock_Loading(FrameworkElement sender, object args)
-        {
-            
-        }
-
-        private void RichTextBlock_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
-        {
-            var test = (string)sender.DataContext;
-            var quoteBrush = Application.Current.Resources["ControlExampleDisplayBrush"];
-            if (test != null)
-            {
-                ConvertFromHtml2.QuoteBrush = (SolidColorBrush)quoteBrush;
-                ConvertFromHtml2.FromHtml(test, (RichTextBlock)sender, sender.Width);
-            }
-        }
-
-        private void RichTextBlock_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (e.NewSize.Width != e.PreviousSize.Width)
-            {
-                var test = (string)((FrameworkElement)sender).DataContext;
-                var quoteBrush = Application.Current.Resources["ControlExampleDisplayBrush"];
-                if (test != null)
-                {
-                    ConvertFromHtml2.QuoteBrush = (SolidColorBrush)quoteBrush;
-                    ConvertFromHtml2.FromHtml(test, (RichTextBlock)sender, e.NewSize.Width);
-                }
-            }
-        }
-
-        private void RichTextBlock_LayoutUpdated(object sender, object e)
-        {
-            if (sender != null)
-            {
-                var test = (string)((FrameworkElement)sender).DataContext;
-                var quoteBrush = Application.Current.Resources["ControlExampleDisplayBrush"];
-                if (test != null)
-                {
-                    ConvertFromHtml2.QuoteBrush = (SolidColorBrush)quoteBrush;
-                    ConvertFromHtml2.FromHtml(test, (RichTextBlock)sender, ((FrameworkElement)sender).Width);
-                }
-            }
         }
     }
 }

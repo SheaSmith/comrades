@@ -1,5 +1,5 @@
-﻿using Comrades.Models;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Comrades.Models;
 using Microsoft.UI.Xaml;
 using System;
 using System.Collections.Generic;

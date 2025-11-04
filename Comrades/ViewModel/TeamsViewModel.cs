@@ -1,6 +1,6 @@
-﻿using Comrades.Services;
-using Microsoft.Graph.Beta.Models;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Comrades.Services;
+using Microsoft.Graph;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using System;
@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Microsoft.Graph.Beta.Models;
 
 namespace Comrades.ViewModel
 {
@@ -88,7 +89,10 @@ namespace Comrades.ViewModel
         {
             Team = team;
             Channels = new ObservableCollection<Channel>();
-            channels.ForEach((c) => Channels.Add(c));
+            foreach (var channel in channels)
+            {
+                Channels.Add(channel);
+            }
         }
     }
 }
